@@ -34,8 +34,8 @@ fn rand(n: u32) -> u32 {
 fn concat(items: Vec<Value>) -> String {
     let mut output = String::new();
     for s in items {
-        let s = s.into_string().unwrap();
-        output.push_str(&s.borrow_ref().unwrap());
+        let s = s.borrow_string_ref().unwrap();
+        output.push_str(&s);
     }
     output
 }
@@ -72,7 +72,7 @@ pub fn sort_userdata(run: impl FnOnce(&mut dyn FnMut())) -> anyhow::Result<()> {
     let bench: Function = rune::from_value(output)?;
 
     run(&mut || {
-        bench.call::<_, ()>(()).unwrap();
+        bench.call::<()>(()).unwrap();
     });
 
     Ok(())
