@@ -10,3 +10,5 @@ pub mod rquickjs;
 pub mod rune;
 #[cfg(any(feature = "wasmi", feature = "wasmtime"))]
 pub mod wasm;
+#[cfg(any(feature = "wasmer_cranelift", feature = "wasmer_singlepass", feature = "wasmer_llvm", feature = "wasmer_wamr"))]
+pub mod wasmer;

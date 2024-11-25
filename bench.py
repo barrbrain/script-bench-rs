@@ -27,6 +27,7 @@ benches = dict()
 ids = set()
 for f in glob.glob("benches/*.rs"):
     name = splitext(basename(f))[0]
+    if not name.startswith("wasm"): continue
     benches[name] = dict()
     results = run_benchmark(name)
     for res in results:
@@ -46,6 +47,7 @@ for id in ids:
     ax.set_title("lower is better")
     ax.set_ylabel("time (ms)", fontweight="bold")
     ax.set_ylim(0, ymax * 1.2)
+    plt.xticks(rotation=45, ha="right")
     fig.suptitle(id, fontsize=18)
     fig.tight_layout()
 
